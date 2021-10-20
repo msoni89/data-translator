@@ -1,6 +1,6 @@
 # Data Translator
 
-Data translator is java library use for tranaslatind data based on config provided.
+Data translator is written in java and using threading for reading and writing translated data into file.
 
 ## Rrequred
 - Java 8
