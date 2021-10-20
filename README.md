@@ -1,1 +1,1 @@
-# file-reader-multi-threading
+# Vendor data reader application using multithreading.
