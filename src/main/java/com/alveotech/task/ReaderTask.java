@@ -1,4 +1,4 @@
-package com.alveotech.service;
+package com.alveotech.task;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,10 +11,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.alveotech.constants.ApplicationConstants;
+import com.alveotech.service.DataTranslatorHelper;
 import com.alveotech.utils.ValidatorUtilis;
 
 public class ReaderTask implements Runnable {
-	private static final Logger LOGGER = LogManager.getLogger(TranslatorServiceImpl.class);
+	private static final Logger LOGGER = LogManager.getLogger(DataTranslatorHelper.class);
 
 	private final BlockingQueue<String> queue;
 	private final BufferedReader bufferedReader;

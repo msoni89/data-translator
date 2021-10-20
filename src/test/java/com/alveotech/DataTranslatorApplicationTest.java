@@ -22,13 +22,13 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
 @RunWith(JUnit4.class)
-public class FileTranslatorApplicationTest {
+public class DataTranslatorApplicationTest {
 
 	@Rule
 	public TemporaryFolder folder = new TemporaryFolder();
 
 	@InjectMocks
-	private FileTranslatorApplication fileTranslatorApplication = new FileTranslatorApplication();
+	private DataTranslatorApplication dataTranslatorApplication = new DataTranslatorApplication();
 
 	@Before
 	public void setUp() throws Exception {
@@ -74,7 +74,7 @@ public class FileTranslatorApplicationTest {
 	@Test
 	public void testDoStart_DoNothing() {
 		String[] arguments = new String[] { "--help", };
-		fileTranslatorApplication.doStart(arguments);
+		dataTranslatorApplication.doStart(arguments);
 	}
 
 	@Test
@@ -83,7 +83,7 @@ public class FileTranslatorApplicationTest {
 				"--column-mapping=../target/vendor-data.txt", "--extract-row=../target/vendor-data.txt",
 				"--output=../target/vendor-data.txt" };
 		RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-			fileTranslatorApplication.doStart(arguments);
+			dataTranslatorApplication.doStart(arguments);
 		});
 		assertEquals("Invalid file path provided, please check --help command", exception.getMessage());
 	}
@@ -91,7 +91,7 @@ public class FileTranslatorApplicationTest {
 	@Test
 	public void shouldThrowRuntimeException_testDoStart_WithEmptyFilePath() throws Exception {
 		RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-			fileTranslatorApplication.doStart(emptyFilesArguments);
+			dataTranslatorApplication.doStart(emptyFilesArguments);
 		});
 		assertEquals("Please provide valid mapping files!", exception.getMessage());
 	}
@@ -99,7 +99,7 @@ public class FileTranslatorApplicationTest {
 	@Test
 	public void shouldThrowRuntimeException_testDoStart_WithMissingMandatoryParameters() throws Exception {
 		RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-			fileTranslatorApplication.doStart(missingMandatoryArgument);
+			dataTranslatorApplication.doStart(missingMandatoryArgument);
 		});
 		assertEquals("Missing mandatory options, please check --help command", exception.getMessage());
 	}
@@ -122,7 +122,7 @@ public class FileTranslatorApplicationTest {
 				"--extract-row=" + extractRowsFileFilled.getPath(), "--output=" + outputFileEmpty.getPath() };
 
 		RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-			fileTranslatorApplication.doStart(filledFileArgument);
+			dataTranslatorApplication.doStart(filledFileArgument);
 		});
 		assertEquals("Vendor data file doesn't have column header!", exception.getMessage());
 	}
@@ -146,7 +146,7 @@ public class FileTranslatorApplicationTest {
 				"--column-mapping=" + columnTranslateFileFilled.getPath(),
 				"--extract-row=" + extractRowsFileFilled.getPath(), "--output=" + outputFileEmpty.getPath() };
 
-		fileTranslatorApplication.doStart(filledFileArgument);
+		dataTranslatorApplication.doStart(filledFileArgument);
 		List<String> translatedValues = Files.readAllLines(Paths.get(outputFileEmpty.getPath()));
 		assertTrue(translatedValues.containsAll(Arrays.asList("COL0	COL1	COL3", "OURID2	VAL21	VAL22")));
 	}
@@ -169,7 +169,7 @@ public class FileTranslatorApplicationTest {
 		String[] filledFileArgument = new String[] { "--vendor-data=" + vendorDataFileFilled.getPath(),
 				"--column-mapping=" + columnTranslateFileFilled.getPath(),
 				"--extract-row=" + extractRowsFileFilled.getPath(), "--output=" + outputFileEmpty.getPath() };
-		fileTranslatorApplication.doStart(filledFileArgument);
+		dataTranslatorApplication.doStart(filledFileArgument);
 		List<String> translatedValues = Files.readAllLines(Paths.get(outputFileEmpty.getPath()));
 		assertTrue(translatedValues.containsAll(Arrays.asList("COL0	COL1	COL3", "OURID2	VAL21	VAL22")));
 	}
@@ -193,7 +193,7 @@ public class FileTranslatorApplicationTest {
 				"--column-mapping=" + columnTranslateFileFilled.getPath(),
 				"--extract-row=" + extractRowsFileFilled.getPath(), "--output=" + outputFileEmpty.getPath() };
 		RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-			fileTranslatorApplication.doStart(filledFileArgument);
+			dataTranslatorApplication.doStart(filledFileArgument);
 		});
 		assertEquals("Please provide valid mapping files!", exception.getMessage());
 

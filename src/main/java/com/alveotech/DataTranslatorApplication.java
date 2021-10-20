@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.alveotech.constants.ApplicationConstants;
-import com.alveotech.service.TranslatorServiceImpl;
+import com.alveotech.service.DataTranslatorHelper;
 import com.alveotech.utils.ValidatorUtilis;
 
 /**
@@ -17,9 +17,9 @@ import com.alveotech.utils.ValidatorUtilis;
  * @author msoni89
  *
  */
-public class FileTranslatorApplication {
-	private static final Logger LOGGER = LogManager.getLogger(FileTranslatorApplication.class);
-	private static final FileTranslatorApplication fileTranslatorApplication = new FileTranslatorApplication();
+public class DataTranslatorApplication {
+	private static final Logger LOGGER = LogManager.getLogger(DataTranslatorApplication.class);
+	private static final DataTranslatorApplication fileTranslatorApplication = new DataTranslatorApplication();
 
 	public static void main(String[] args) {
 		fileTranslatorApplication.doStart(args);
@@ -50,8 +50,8 @@ public class FileTranslatorApplication {
 		if (!isValidPath) {
 			throw new RuntimeException("Invalid file path provided, please check --help command");
 		}
-		// Initializing TranslatorServiceImpl object
-		final TranslatorServiceImpl translatorService = new TranslatorServiceImpl(
+		// Initializing DataTranslatorHelper object
+		final DataTranslatorHelper translatorService = new DataTranslatorHelper(
 				Paths.get(argumentMaps.get(ApplicationConstants.VENDOR_DATA)),
 				Paths.get(argumentMaps.get(ApplicationConstants.COLUMN_MAPPING)),
 				Paths.get(argumentMaps.get(ApplicationConstants.EXTRACT_ROW)),

@@ -27,10 +27,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.alveotech.constants.ApplicationConstants;
+import com.alveotech.task.ReaderTask;
+import com.alveotech.task.WriterTask;
 import com.alveotech.utils.ValidatorUtilis;
 
-public class TranslatorServiceImpl {
-	private static final Logger LOGGER = LogManager.getLogger(TranslatorServiceImpl.class);
+public class DataTranslatorHelper {
+	private static final Logger LOGGER = LogManager.getLogger(DataTranslatorHelper.class);
 
 	// LinkedBlockingQueue used for producer/ consumer message broker
 	private final BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
@@ -54,7 +56,7 @@ public class TranslatorServiceImpl {
 	 * @param extractRowsConfigFilePath
 	 * @param outputFilePath
 	 */
-	public TranslatorServiceImpl(Path vendorFilePath, Path columnMappingConfigFilePath, Path extractRowsConfigFilePath,
+	public DataTranslatorHelper(Path vendorFilePath, Path columnMappingConfigFilePath, Path extractRowsConfigFilePath,
 			Path outputFilePath) {
 		LOGGER.info("Updating passed path and loading config files into cache");
 		this.vendorFilePath = vendorFilePath;

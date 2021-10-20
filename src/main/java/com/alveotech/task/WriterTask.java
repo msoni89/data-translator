@@ -1,4 +1,4 @@
-package com.alveotech.service;
+package com.alveotech.task;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -7,8 +7,10 @@ import java.util.concurrent.BlockingQueue;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.alveotech.service.DataTranslatorHelper;
+
 public class WriterTask implements Runnable {
-	private static final Logger LOGGER = LogManager.getLogger(TranslatorServiceImpl.class);
+	private static final Logger LOGGER = LogManager.getLogger(DataTranslatorHelper.class);
 
 	private final BlockingQueue<String> queue;
 	private final BufferedOutputStream bufferedOutputStream;
