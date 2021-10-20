@@ -17,10 +17,10 @@ mkdir new_folder // for creating new package
 cp ~/target/data-translator-1.0-SNAPSHOT.jar .
 mkdir data // data folder for config and output file.
 ```
-
-
-
-
+## Commands
+```java
+java -jar data-translator-1.0-SNAPSHOT.jar --help
+```
 ```java
 java -jar data-translator-1.0-SNAPSHOT.jar --vendor-data=data/vendor_data.txt  --column-mapping=data/columns_translate.txt --extract-row=data/extract_rows.txt  --output=data/output.txt
 ```
